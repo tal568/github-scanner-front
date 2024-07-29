@@ -18,7 +18,7 @@ const RepositoryDisplay = ({refetch}) => {
    const onRowSelected = event => {
     if (event.node.selected) {
         const selectedRow = event.node.data;
-        refetch({ name: selectedRow.name })
+        refetch({ name: selectedRow.name ,owner:selectedRow.owner })
     }
 };
 
