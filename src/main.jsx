@@ -7,7 +7,7 @@ import '@mantine/core/styles.css';
 import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:4000',
+  uri: import.meta.env.VITE_GITHUB_SCANNER_BASE_URL,
   cache: new InMemoryCache(),
 });
 export const getRepositoriesData =gql`
