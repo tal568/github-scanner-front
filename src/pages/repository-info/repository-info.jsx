@@ -1,10 +1,3 @@
-// name
-// size
-// owner
-// publicStatus
-// numberOfFiles
-// yamlContent
-
 import { Card } from "@mantine/core";
 
 // webhooks

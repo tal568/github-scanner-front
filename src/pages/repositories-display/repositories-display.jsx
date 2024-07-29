@@ -4,6 +4,8 @@ import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the 
 import "ag-grid-community/styles/ag-theme-quartz.css";
 import { useCallback, useState } from "react";
 import { getRepositoriesData } from "../../gql/queries";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const RepositoryDisplay = ({ refetch }) => {
   const { loading, error, data } = useQuery(getRepositoriesData);
@@ -17,6 +19,7 @@ const RepositoryDisplay = ({ refetch }) => {
     const selectedRows = event.api.getSelectedRows();
     if (selectedRows.length > 0) {
       const selectedRow = selectedRows[0];
+      toast.info(`getting repository info for ${selectedRow.name}`);
       refetch({ name: selectedRow.name, owner: selectedRow.owner });
     }
   }, []);
@@ -24,7 +27,6 @@ const RepositoryDisplay = ({ refetch }) => {
   if (loading) return <p>Loading...</p>;
 
   if (error) return <p>Error</p>;
-  console.log(data);
   return (
     <div
       className="repository-display ag-theme-quartz-dark"
