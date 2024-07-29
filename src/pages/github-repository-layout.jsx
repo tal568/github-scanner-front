@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
-import { getRepositoryDataByName } from "../main";
 import RepositoryDisplay from "./repositories-display/repositories-display";
 import RepositoryInfo from "./repository-info/repository-info";
+import { getRepositoryDataByName } from "../gql/queries";
 
 const GithubRepositoryLayout = () => {
     const repositoryData = useQuery(getRepositoryDataByName);
