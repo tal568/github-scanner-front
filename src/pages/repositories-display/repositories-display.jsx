@@ -12,13 +12,14 @@ const RepositoryDisplay = ({ refetch }) => {
     { headerName: "Name", field: "name" },
     { headerName: "Size", field: "size" },
   ]);
-  console.log("render");
-  const onRowSelected = useCallback(
-    (event) => {
-      refetch({ name: event.node.data.name, owner: event.node.data.owner });
-    },
-    [refetch],
-  );
+
+  const onSelectionChanged = useCallback((event) => {
+    const selectedRows = event.api.getSelectedRows();
+    if (selectedRows.length > 0) {
+      const selectedRow = selectedRows[0];
+      refetch({ name: selectedRow.name, owner: selectedRow.owner });
+    }
+  }, []);
 
   if (loading) return <p>Loading...</p>;
 
@@ -33,7 +34,7 @@ const RepositoryDisplay = ({ refetch }) => {
         rowData={data?.repositories}
         rowSelection="single"
         columnDefs={colDefs}
-        onRowSelected={onRowSelected}
+        onSelectionChanged={onSelectionChanged}
       ></AgGridReact>
     </div>
   );
