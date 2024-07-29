@@ -1,0 +1,7 @@
+.RepositoryLayout {
+  height: 90%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+}

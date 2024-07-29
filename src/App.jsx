@@ -1,5 +1,5 @@
 import "./App.css";
-import GithubRepositoryLayout from "./pages/github-repository-layout";
+import GithubRepositoryLayout from "./pages/github-reposiroty-layout/github-repository-layout";
 
 function App() {
   return (

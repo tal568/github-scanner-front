@@ -6,7 +6,7 @@ import { useCallback, useState } from "react";
 import { getRepositoriesData } from "../../gql/queries";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import "./repositories-display.css";
 const RepositoryDisplay = ({ refetch }) => {
   const { loading, error, data } = useQuery(getRepositoriesData);
   const [colDefs, setColDefs] = useState([
@@ -28,10 +28,7 @@ const RepositoryDisplay = ({ refetch }) => {
 
   if (error) return <p>Error</p>;
   return (
-    <div
-      className="repository-display ag-theme-quartz-dark"
-      style={{ width: "45%", height: "80%" }}
-    >
+    <div className="repository-display ag-theme-quartz-dark">
       <AgGridReact
         rowData={data?.repositories}
         rowSelection="single"

@@ -1,27 +1,61 @@
-import { Card } from "@mantine/core";
-
+import { Card, Divider, Text, useMantineTheme } from "@mantine/core";
+import "./repository-info.css";
 // webhooks
 const RepositoryInfo = ({ data, loding }) => {
+  const theme = useMantineTheme();
+
   if (loding) return <p>Loading...</p>;
-  if (data === undefined) return <p>select a repository</p>;
 
   return (
     <div
-      className="repository-info ag-theme-quartz"
-      style={{ width: "55%", height: "80%" }}
+      className="repository-info"
+      style={{
+        overflow: "auto",
+        backgroundColor:
+          theme.colorScheme === "dark"
+            ? theme.colors.dark[6]
+            : theme.colors.gray[0],
+        paddingLeft: "15px",
+        paddingTop: "15px",
+        borderRadius: "10px",
+      }}
     >
-      <Card style={{ overflow: "auto" }}>
-        <Card.Section>
-          <h3>{data.repository.name}</h3>
-          <p>Size: {data.repository.size}</p>
-          <p>Owner: {data.repository.owner}</p>
-          <p>Public Status: {data.repository.publicStatus.toString()}</p>
-          <p>Number of Files: {data.repository.numberOfFiles}</p>
-          <p>Yaml Content:</p>
-          <pre>{data.repository.yamlContent}</pre>
-          <p>Webhooks: {data.repository.webhooks}</p>
-        </Card.Section>
-      </Card>
+      <div
+        className="repository-info-card"
+        style={{ display: "flex", flexDirection: "column" }}
+      >
+        {" "}
+        {data ? (
+          <>
+            <Text>Name: {data?.repository.name}</Text>
+            <Divider my="md" />
+
+            <Text>Owner: {data?.repository.owner}</Text>
+            <Divider my="md" />
+
+            <Text>Size: {data?.repository.size}</Text>
+            <Divider my="md" />
+
+            <Text>
+              Public Status: {data?.repository.publicStatus.toString()}
+            </Text>
+            <Divider my="md" />
+
+            <Text>Number of Files: {data?.repository.numberOfFiles}</Text>
+            <Text>
+              <Divider my="md" />
+              Yaml Content: <pre>{data?.repository.yamlContent}</pre>
+            </Text>
+            <Divider my="md" />
+
+            <Text>Webhooks: {data?.repository.webhooks}</Text>
+          </>
+        ) : (
+          <Text style={{ fontSize: "30px", margin: "auto" }}>
+            No Repository Selected
+          </Text>
+        )}
+      </div>
     </div>
   );
 };
